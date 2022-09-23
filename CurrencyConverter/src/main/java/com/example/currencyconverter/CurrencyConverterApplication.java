@@ -75,23 +75,6 @@ public class CurrencyConverterApplication extends Application {
 
     }
 
-    private static void initialiseChoiceBox(){
-        ChoiceBox<String> to = controller.getCurrencyTo();
-        ChoiceBox<String> from = controller.getCurrencyFrom();
-
-        ArrayList<String> currencyCodes = new ArrayList<>(Arrays.asList(
-                "AUD",
-                "CAD",
-                "EUR",
-                "GBP",
-                "HKD",
-                "JPY",
-                "USD"));
-
-        to.getItems().addAll(currencyCodes);
-        from.getItems().addAll(currencyCodes);
-    }
-
     private void parseChoice(){
         this.currencyFrom = controller.getCurrencyFrom().getValue();
         this.currencyTo = controller.getCurrencyTo().getValue();

@@ -6,6 +6,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CurController {
     @FXML
     private Label result;
@@ -22,6 +25,21 @@ public class CurController {
     protected void onGoButtonClick() {
 
         result.setText("You now have");
+    }
+
+    @FXML
+    protected void initialiseChoiceBox(){
+        ArrayList<String> currencyCodes = new ArrayList<>(Arrays.asList(
+                "AUD",
+                "CAD",
+                "EUR",
+                "GBP",
+                "HKD",
+                "JPY",
+                "USD"));
+
+        currencyTo.getItems().addAll(currencyCodes);
+        currencyFrom.getItems().addAll(currencyCodes);
     }
 
     public ChoiceBox<String> getCurrencyFrom() {

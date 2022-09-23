@@ -21,6 +21,6 @@
     <ChoiceBox fx:id="currencyTo"/>
     <Label text="Please enter the amount you would like to convert:"/>
     <TextField fx:id="inputAmount"/>
-    <Button text="Go!" fx:id="calculateButton"/>
+    <Button text="Go!" fx:id="calculateButton" onAction="#initialiseChoiceBox"/>
     <Label fx:id="result"/>
 </VBox>
