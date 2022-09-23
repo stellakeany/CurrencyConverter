@@ -15,12 +15,17 @@
 
     <Label fx:id="title" text="Welcome to Currency Converter"/>
     <Label text="Please choose your currencies below"/>
+
     <Label text="Converting from:"/>
-    <ChoiceBox fx:id="currencyFrom"/>
+    <ChoiceBox fx:id="currencyFromInput"/>
+
     <Label text="Converting to"/>
-    <ChoiceBox fx:id="currencyTo"/>
+    <ChoiceBox fx:id="currencyToInput"/>
+
     <Label text="Please enter the amount you would like to convert:"/>
     <TextField fx:id="inputAmount"/>
-    <Button text="Go!" fx:id="calculateButton" onAction="#initialiseChoiceBox"/>
+
+    <Button text="Go!" fx:id="calculateButton" onAction="#onGoButtonClick"/>
+
     <Label fx:id="result"/>
 </VBox>
