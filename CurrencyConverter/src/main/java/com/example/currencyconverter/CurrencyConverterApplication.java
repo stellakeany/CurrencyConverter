@@ -24,7 +24,7 @@ public class CurrencyConverterApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CurrencyConverterApplication.class.getResource("CurCon-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Currency Converter");
 
         stage.setScene(scene);
