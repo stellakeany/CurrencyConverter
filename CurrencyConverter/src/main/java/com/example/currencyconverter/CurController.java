@@ -1,10 +1,11 @@
 package com.example.currencyconverter;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.util.converter.DoubleStringConverter;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ public class CurController {
 
         // Valid input
         if (amount >= 0){
-            double exchange = getExchange(currencyTo, currencyFrom);
+            double exchange = getExchange();
             double total = convert(exchange, amount);
             result.setText("You now have " + total + " " + currencyTo);
 
@@ -46,6 +47,9 @@ public class CurController {
     @FXML
     public void initialize(){
         initialiseChoiceBox();
+
+        //Converts numeric input in amount text box to double
+        inputAmount.setTextFormatter(new TextFormatter<>(new DoubleStringConverter()));
     }
 
     @FXML
@@ -68,21 +72,36 @@ public class CurController {
     }
 
     @FXML
-    private int parseInput(){
-        //TODO
-        //parses textbox input
-        //returns -1 if textbox input invalid
-        return -1;
+    private double parseInput(){
+
+        String input = inputAmount.getText();
+        Double d;
+
+        //Reject input if textbox null or can't be parsed as a double
+        if (input == null) {
+            return -1;
+        }
+        try {
+            d = Double.parseDouble(input);
+        } catch (NumberFormatException nfe) {
+            return -1;
+        }
+
+        //Assigning value to currency choice
+        currencyFrom = currencyFromInput.getValue();
+        currencyTo = currencyToInput.getValue();
+
+        return d;
     }
 
     @FXML
     private double convert(double exchangeRate, double amount){
     //TODO
         //returns amount once converted
-        return -1;
+        return amount;
     }
 
-    private double getExchange(String to, String from) throws IOException {     //gets the EUR -> GBP current rate atm
+    private double getExchange() throws IOException {     //gets the EUR -> GBP current rate atm
         String key = "834a41d702ef3d67646a4c98";
         URL url = new URL("https://v6.exchangerate-api.com/v6/" + key + "/latest/EUR");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
