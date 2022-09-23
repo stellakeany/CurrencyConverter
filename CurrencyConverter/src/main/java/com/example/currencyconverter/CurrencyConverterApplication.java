@@ -1,4 +1,5 @@
 package com.example.currencyconverter;
+import org.json.JSONObject;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,11 @@ import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -41,7 +46,7 @@ public class CurrencyConverterApplication extends Application {
         launch();
     }
 
-    public static void APIWork{     //gets the EUR -> GBP current rate atm
+    public static void APIWork() throws IOException{     //gets the EUR -> GBP current rate atm
         String key = "834a41d702ef3d67646a4c98";
         URL url = new URL("https://v6.exchangerate-api.com/v6/" + key + "/latest/EUR");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
