@@ -38,7 +38,7 @@ public class CurController {
         if (amount >= 0){
             double exchange = getExchange();
             double total = convert(exchange, amount);
-            result.setText("You now have " + total + " " + currencyTo);
+            result.setText("You now have " + Math.round(total * 100.0) / 100.0 + " " + currencyTo);
 
         // Invalid input
         } else result.setText("Invalid input");
@@ -50,6 +50,7 @@ public class CurController {
 
         //Converts numeric input in amount text box to double
         inputAmount.setTextFormatter(new TextFormatter<>(new DoubleStringConverter()));
+
     }
 
     @FXML
@@ -96,14 +97,12 @@ public class CurController {
 
     @FXML
     private double convert(double exchangeRate, double amount){
-    //TODO
-        //returns amount once converted
-        return amount;
+        return amount * exchangeRate;
     }
 
     private double getExchange() throws IOException {     //gets the EUR -> GBP current rate atm
         String key = "834a41d702ef3d67646a4c98";
-        URL url = new URL("https://v6.exchangerate-api.com/v6/" + key + "/latest/EUR");
+        URL url = new URL("https://v6.exchangerate-api.com/v6/" + key + "/latest/" + currencyFrom);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.connect();
@@ -125,7 +124,7 @@ public class CurController {
         in.close();
 
         JSONObject object = new JSONObject(json.toString());
-        return object.getJSONObject("conversion_rates").getDouble("GBP");
+        return object.getJSONObject("conversion_rates").getDouble(currencyTo);
 
     }
 }

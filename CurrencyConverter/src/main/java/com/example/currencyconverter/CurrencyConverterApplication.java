@@ -1,23 +1,11 @@
 package com.example.currencyconverter;
-import org.json.JSONObject;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CurrencyConverterApplication extends Application {
 
